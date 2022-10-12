@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { myLength, myPop, myPush, myShift } from './index.js';
+import { myLength, myPop, myPush, myShift, mySome } from './index.js';
 
 describe('Testing manually built array methods', () => {
     // LENGTH
@@ -47,5 +47,17 @@ describe('Testing manually built array methods', () => {
         const result4 = myShift(testArray4, valueToAdd4);
         // Assert
         expect(JSON.stringify(result4)).toBe(JSON.stringify(expectedResult4));
+    });
+
+    //SOME
+    test('Testing Some', () => {
+        // Arrange
+        const testArray5 = ['pepe', 'paco', 'manolo'];
+        const valueToAdd5 = 'paco';
+        const expectedResult5 = true;
+        // Act
+        const result5 = mySome(testArray5, valueToAdd5);
+        // Assert
+        expect(result5).toBe(expectedResult5);
     });
 });

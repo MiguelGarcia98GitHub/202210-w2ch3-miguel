@@ -35,3 +35,12 @@ export const myShift = (array, valueToAdd) => {
     }
     return newArray;
 };
+
+export const mySome = (array, valueToCheck) => {
+    let receivedArray = [...array];
+    if (receivedArray.includes(valueToCheck)) {
+        return true;
+    }
+
+    return false;
+};
