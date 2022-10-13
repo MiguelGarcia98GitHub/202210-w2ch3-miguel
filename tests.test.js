@@ -14,7 +14,7 @@ describe('Testing manually built array methods', () => {
     });
 
     // PUSH
-    test('Testing Push', () => {
+    test('Testing Push: pushing an element into an array', () => {
         // Arrange
         const testArray2 = ['pepe', 'paco', 'manolo'];
         const expectedResult2 = ['pepe', 'paco', 'manolo', 'garfunkel'];
@@ -23,6 +23,19 @@ describe('Testing manually built array methods', () => {
         const result2 = myPush(testArray2, valueToAdd2);
         // Assert
         expect(JSON.stringify(result2)).toBe(JSON.stringify(expectedResult2));
+    });
+
+    test('Testing Push: trying to pushan element into not an array', () => {
+        // Arrange
+        const testArray11 = 'not an array';
+        const valueToAdd11 = 'garfunkel';
+
+        // Assert
+        try {
+            myPush(testArray11, valueToAdd11);
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
     });
 
     // POP
@@ -50,11 +63,21 @@ describe('Testing manually built array methods', () => {
     });
 
     //SOME
-    test('Testing Some', () => {
+    test('Testing Some with a value thats inside the array', () => {
         // Arrange
         const testArray5 = ['pepe', 'paco', 'manolo'];
         const valueToAdd5 = 'paco';
         const expectedResult5 = true;
+        // Act
+        const result5 = mySome(testArray5, valueToAdd5);
+        // Assert
+        expect(result5).toBe(expectedResult5);
+    });
+    test('Testing Some with a value thats not in the array', () => {
+        // Arrange
+        const testArray5 = ['pepe', 'paco', 'manolo'];
+        const valueToAdd5 = 'garfunkel';
+        const expectedResult5 = false;
         // Act
         const result5 = mySome(testArray5, valueToAdd5);
         // Assert

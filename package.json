@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "start": "node index.js",
-        "test": "jest --watchAll -- --verbose",
+        "test": "jest --watchAll --coverage",
         "prepare": "husky install"
     },
     "keywords": [],
