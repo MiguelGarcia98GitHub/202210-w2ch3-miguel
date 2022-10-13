@@ -1,63 +1,133 @@
 /* eslint-disable no-undef */
 import { myLength, myPop, myPush, myShift, mySome } from './index.js';
 
-describe('Testing manually built array methods', () => {
+describe('Testing Length', () => {
     // LENGTH
-    test('Testing Length', () => {
-        // Arrange
-        const testArray1 = ['pepe', 'paco', 'manolo'];
-        const expectedResult1 = 3;
-        // Act
-        const result1 = myLength(testArray1);
-        // Assert
-        expect(JSON.stringify(result1)).toBe(JSON.stringify(expectedResult1));
-    });
+    test('Testing Length: with an array of 3 items', () => {
+        const testArray = ['pepe', 'paco', 'manolo'];
+        const expectedResult = 3;
+        const result = myLength(testArray);
 
+        try {
+            expect(JSON.stringify(result)).toBe(JSON.stringify(expectedResult));
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
+    });
+    test('Testing Length: with an an undefined value', () => {
+        const testArray = 'not an array';
+
+        try {
+            myLength(testArray);
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
+    });
+});
+
+describe('Testing Push', () => {
     // PUSH
-    test('Testing Push', () => {
-        // Arrange
-        const testArray2 = ['pepe', 'paco', 'manolo'];
-        const expectedResult2 = ['pepe', 'paco', 'manolo', 'garfunkel'];
-        const valueToAdd2 = 'garfunkel';
-        // Act
-        const result2 = myPush(testArray2, valueToAdd2);
-        // Assert
-        expect(JSON.stringify(result2)).toBe(JSON.stringify(expectedResult2));
+    test('Testing Push: pushing an element into an array', () => {
+        const testArray = ['pepe', 'paco', 'manolo'];
+        const expectedResult = ['pepe', 'paco', 'manolo', 'garfunkel'];
+        const valueToAdd = 'garfunkel';
+        const result = myPush(testArray, valueToAdd);
+        try {
+            expect(JSON.stringify(result)).toBe(JSON.stringify(expectedResult));
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
     });
+    test('Testing Push: trying to push an element into not an array', () => {
+        const testArray = 'not an array';
+        const valueToAdd = 'garfunkel';
 
+        try {
+            myPush(testArray, valueToAdd);
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
+    });
+});
+
+describe('Testing Pop', () => {
     // POP
-    test('Testing Pop', () => {
-        // Arrange
-        const testArray3 = ['pepe', 'paco', 'manolo', 'garfunkel'];
-        const expectedResult3 = ['pepe', 'paco', 'manolo'];
-        // Act
-        const result3 = myPop(testArray3);
-        // Assert
+    test('Testing Pop: with an array of 4 items', () => {
+        const testArray = ['pepe', 'paco', 'manolo', 'garfunkel'];
+        const expectedResult = ['pepe', 'paco', 'manolo'];
+        const result = myPop(testArray);
 
-        expect(JSON.stringify(result3)).toBe(JSON.stringify(expectedResult3));
+        try {
+            expect(JSON.stringify(result)).toBe(JSON.stringify(expectedResult));
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
     });
+    test('Testing Pop: with not an array', () => {
+        const testArray = 3;
 
+        try {
+            myPop(testArray);
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
+    });
+});
+
+describe('Testing Shift', () => {
     //SHIFT
-    test('Testing Shift', () => {
-        // Arrange
-        const testArray4 = ['pepe', 'paco', 'manolo'];
-        const expectedResult4 = ['garfunkel', 'pepe', 'paco', 'manolo'];
-        const valueToAdd4 = 'garfunkel';
-        // Act
-        const result4 = myShift(testArray4, valueToAdd4);
-        // Assert
-        expect(JSON.stringify(result4)).toBe(JSON.stringify(expectedResult4));
-    });
+    test('Testing Shift: with an array of 3 items', () => {
+        const testArray = ['pepe', 'paco', 'manolo'];
+        const expectedResult = ['garfunkel', 'pepe', 'paco', 'manolo'];
+        const valueToAdd = 'garfunkel';
+        const result = myShift(testArray, valueToAdd);
 
+        try {
+            expect(JSON.stringify(result)).toBe(JSON.stringify(expectedResult));
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
+    });
+    test('Testing Shift: with not an array', () => {
+        const testArray = 7;
+        const valueToAdd = 'garfunkel';
+
+        try {
+            myShift(testArray, valueToAdd);
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
+    });
+});
+
+describe('Testing Some', () => {
     //SOME
-    test('Testing Some', () => {
-        // Arrange
-        const testArray5 = ['pepe', 'paco', 'manolo'];
-        const valueToAdd5 = 'paco';
-        const expectedResult5 = true;
-        // Act
-        const result5 = mySome(testArray5, valueToAdd5);
-        // Assert
-        expect(result5).toBe(expectedResult5);
+    test('Testing Some with a value thats inside the array', () => {
+        const testArray = ['pepe', 'paco', 'manolo'];
+        const valueToAdd = 'paco';
+        const expectedResult = true;
+
+        const result = mySome(testArray, valueToAdd);
+
+        expect(result).toBe(expectedResult);
+    });
+    test('Testing Some with a value thats not in the array', () => {
+        const testArray = ['pepe', 'paco', 'manolo'];
+        const valueToAdd = 'garfunkel';
+        const expectedResult = false;
+
+        const result = mySome(testArray, valueToAdd);
+
+        expect(result).toBe(expectedResult);
+    });
+    test('Testing Some with a value thats not an array', () => {
+        const testArray = 4;
+        const valueToAdd = 'garfunkel';
+
+        try {
+            mySome(testArray, valueToAdd);
+        } catch (error) {
+            expect(error.message).toBe('You must pass an array');
+        }
     });
 });
