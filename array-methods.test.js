@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { myLength, myPop, myPush, myShift, mySome } from './index.js';
+import { myLength, myPop, myPush, myShift, mySome } from './array-methods.js';
 
 describe('Testing Length', () => {
     // LENGTH
