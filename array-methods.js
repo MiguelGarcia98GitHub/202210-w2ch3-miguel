@@ -15,6 +15,7 @@ export const myLength = (array) => {
 
 export const myPush = (array, valueToAdd) => {
     const myError = new Error('You must pass an array');
+
     if (!Array.isArray(array)) {
         throw myError;
     }
