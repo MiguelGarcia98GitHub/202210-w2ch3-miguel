@@ -131,3 +131,19 @@ describe('Testing Some', () => {
         }
     });
 });
+
+// NO TRY / CATCH
+
+describe('Testing a function without try / catch, using throw new Error and toThrow', () => {
+    test('Testing myPush without an array (no try / catch)', () => {
+        const testArray = 7;
+        const expectedResult = new Error('You must pass an array');
+        const valueToAdd = 'garfunkel';
+        // Must wrap the function which we want to test in another function, in order to test it:
+        const result = function () {
+            myPush(testArray, valueToAdd);
+        };
+
+        expect(result).toThrow(expectedResult);
+    });
+});
